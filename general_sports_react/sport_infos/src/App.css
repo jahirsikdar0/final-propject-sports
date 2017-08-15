@@ -99,7 +99,12 @@ input{
   text-align: right;
 }
 
-button{
+/*.link{
+  height: 100px;
+  width: 100px;
+}*/
+/*
+.button{
   background-color: transparent;
   color: teal;
   font-size: 1.2em;
@@ -109,7 +114,7 @@ button{
   cursor: pointer;
   transition: all .5s ease;
   outline: 0px solid transparent;
-}
+}*/
 
 button:hover{
   border-bottom: 2px solid teal;
@@ -229,6 +234,7 @@ img{
 .link{
   color: black;
   font-style: 3rem;
+ 
 }
 
 
@@ -256,6 +262,23 @@ img{
 
 }
 
+
+.apisearch{
+  height:250px;
+  width: 250px;
+  background-color: red;
+}
+/*.sports{
+  height: 650px;
+  width: 750px;
+  background-color: blue;
+  display: inline-block;
+  padding: 20px;
+}
+.list{
+  margin: 10px;
+
+}*/
 
 
 

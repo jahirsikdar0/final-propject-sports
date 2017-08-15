@@ -4,6 +4,7 @@ import SearchSport from './components/SearchSport';
 import Sport from './components/Sport';
 import SportView from './components/SportView';
 import Nav from './components/Nav';
+import Search from './components/Search';
 import axios from 'axios';
 import MainLogin from "./components/Mainlogin";
 import Footer from './components/Footer';
@@ -66,7 +67,7 @@ class App extends Component {
    setSport(sport){
     this.setState(prev => {
       prev.current = sport;
-      prev.mode = 'show';
+      prev.mode = 'sport';
       return prev;
     });
   }
@@ -103,6 +104,39 @@ save(sport){
 
 
 
+
+  // tring to get data from restful api 
+
+   search(e){
+    this.setState({search: e.target.value}, this.searchSportsFromApi.bind(this));
+  }
+
+  searchSportsFromApi(){
+    axios.get(`http://localhost:8080/api/`)
+   
+      .then(res => {
+        console.log('we got some data back from sport radar --> ', res);
+        this.setState({results: this.parseResults(res.data)});
+      })
+  }
+  parseResults(data){
+    console.log('in parseresults', data)
+    return data.filter(sport => {
+      return (
+        <div>
+        <h1>{sport.name}</h1>
+        // <img src={sport.img} alt=""/>
+        <p>{sport.state}</p>  
+        </div>      
+        )
+    })
+  }
+
+
+  ///above is trying for get data for api 
+
+
+
   renderView(){
     console.log(this.state.mode)
     if(this.state.mode === "sports"){
@@ -120,6 +154,8 @@ save(sport){
       return(<Sport sport={this.state.current} />)
     } else if(this.state.mode === "search"){
       return(<div>
+      <Search search={this.search.bind(this)} q={this.state.search} />
+
         <SportList
           sports={this.state.results}
           setSport={this.setSport.bind(this)}
@@ -127,6 +163,8 @@ save(sport){
             onClick: this.save.bind(this),
             text: "Save"
           }}
+        sports={this.state.results}
+
         />
       </div>)
     } else {
@@ -137,7 +175,7 @@ save(sport){
   }
 
 
-//calling handle search ny Gainor help
+//calling handle search by Gainor help
   handleSearch = (e) => {
     const term = e.target.value;
     this.setState({ term });
@@ -148,7 +186,7 @@ save(sport){
   searchSports = (term) => {
       const endpoint = this.state.url + 'search/'
       if(this.state.term) {
-        axios.post(endpoint, { search: this.state.term })
+        axios.post(endpoint, {search: this.state.term })
           .then(data => {
             console.log(data.data);
             if(data.data) {
@@ -165,6 +203,7 @@ save(sport){
       }
     }
 
+
   renderViewtwo(){
     return(
       <div>
@@ -179,7 +218,7 @@ save(sport){
       console.log('triggered render sports ')
       return(
         <div>
-          <h1>hola taka</h1>
+          <h1>Response from Search</h1>
           <h1> {this.state.handleSearch}</h1>
         </div>
         )
@@ -194,11 +233,11 @@ save(sport){
       <MainLogin />
       <Nav changeMode={this.changeMode.bind(this)} />
 
-      {this.renderView()}
+         {this.renderView()}
         {this.renderViewtwo()}
         {this.renderSports()}
         <Footer />
-      </div>
+        </div>
     )
   }
 }

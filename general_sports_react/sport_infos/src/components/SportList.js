@@ -5,7 +5,7 @@ class SportList extends Component {
   renderList(){
     return this.props.sports.map((sport, index) => {
       return(
-        <li key={index}>
+        <li key={index} className="list">
           <h2
             onClick={(e) => {
               this.props.setSport(sport);
@@ -18,8 +18,10 @@ class SportList extends Component {
           <div
             className="button"
             onClick={()=>{this.props.button.onClick(sport)}}
-            >{this.props.button.text}</div>
+            >{this.props.button.text}
+          </div>
         </li>
+      
       )
     })
   }

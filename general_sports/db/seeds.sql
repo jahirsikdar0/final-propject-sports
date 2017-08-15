@@ -45,4 +45,41 @@ INSERT INTO sports (name, state, img) VALUES
 	'NewJersey',
 	'https://www.viasat.no/sites/viasat.no/files/styles/page_full/public/nhl_zucca.jpg?itok=QnFzC31-'
 
-);
+),
+(
+	'LAKERS',
+	'California',
+	'http://www.rantsports.com/nba/files/2014/10/Lakers-Offense.jpg'
+
+
+),
+(
+	'NEW YORK KNICKS',
+	'New York',
+	'http://i.cdn.turner.com/drp/nba/knicks/sites/default/files/schedule_final.jpg'
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
